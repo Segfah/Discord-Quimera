@@ -1,14 +1,14 @@
-const errorMessages ='El comando "!ping" no acepta argumentos adicionales.';
+const { t } = require('./../locales/locales');
 
 module.exports = {
     name: 'ping',
     description: 'Responde con "Pong!" cuando se usa el comando.',
-    run: async (message, args) => {
+    run: async (message, args, language) => {
+        console.log(language);
         if (args.length > 0) {
-            message.reply(errorMessages);
-            throw new Error(errorMessages);
+            message.reply(t(language, 'commands.ping.error'));
+            throw new Error(t(language, 'commands.ping.error'));
         }
-
-        await message.reply('Pong!');
+        await message.reply(t(language, 'commands.ping.response'));
     },
 };
