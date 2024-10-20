@@ -1,0 +1,8 @@
+{
+    "commands": {
+        "ping": {
+            "error": "The \"!ping\" command does not accept additional arguments.",
+            "response": "Pong!"
+        }
+    }
+}
