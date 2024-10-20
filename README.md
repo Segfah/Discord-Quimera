@@ -34,13 +34,17 @@ This project aims to create a Discord bot, with commands that will be added grad
 - The bot will start running and connect to your Discord server using the token provided.
 - Add commands and modify the bot's behavior by editing the `main.js` or related command files.
 
+
+## Documentation
+- [Discordjs (GUIDE)](https://discordjs.guide/)
+- [Discord.js (DOC)](https://discord.js.org/docs/packages/discord.js/14.16.3)
+- [Setting up a bot application](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
+
+## Tools
+- [Discord Intents Calculator](https://discord-intents-calculator.vercel.app/)
+
 ## Contributing
 Feel free to submit issues or pull requests if you find any bugs or have suggestions for new features.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE.md) file for details.
-
-## Doc
-- [Discordjs (GUIDE)](https://discordjs.guide/)
-- [Discord.js (DOC)](https://discord.js.org/docs/packages/discord.js/14.16.3)
-- [Setting up a bot application](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
