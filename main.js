@@ -33,7 +33,7 @@ bot.on(Events.MessageCreate, async (message) => {
     }
 
     try {
-        await command.run(message, args);
+        await command.run(message, args, 'es');
         logSuccess(commandName, message.author.tag, args);
     } catch (error) {
         logError(commandName, message.author.tag, args, error);
