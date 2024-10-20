@@ -38,5 +38,5 @@ This project aims to create a Discord bot, with commands that will be added grad
 Feel free to submit issues or pull requests if you find any bugs or have suggestions for new features.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE.md) file for details.
 
