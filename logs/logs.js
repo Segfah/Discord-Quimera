@@ -12,24 +12,24 @@ function getFormattedDate() {
 }
 
 // Función para guardar un log de error
-function logError(command, user, args, error) {
+function logError(command, user, listArgs, error) {
+    const printArgs =  `Argumentos: [${listArgs}]\n`;
     const logMessage = `--------------------------------------------------------------\n` +
-                       `Fecha: ${getFormattedDate()}\n` +
-                       `Comando "${command}" ejecutado por ${user}.\n` +
-                       `Argumentos: ${JSON.stringify(args)}\n` +
-                       `Error: ${error.stack}\n` +
-                       `--------------------------------------------------------------\n`;
+                       `Date: ${getFormattedDate()}\n` +
+                       `Command "${command}" executed by ${user}.\n` +
+                       printArgs +
+                       `${error.stack}\n`;
 
     fs.appendFileSync(errLogPath, logMessage, 'utf8');
 }
 
 // Función para guardar un log de éxito
-function logSuccess(command, user, args) {
+function logSuccess(command, user, listArgs) {
+    const printArgs =  `Argumentos: [${listArgs}]\n`;
     const logMessage = `--------------------------------------------------------------\n` +
-                       `Fecha: ${getFormattedDate()}\n` +
-                       `Comando "${command}" ejecutado por ${user}.\n` +
-                       `Argumentos: ${JSON.stringify(args)}\n` +
-                       `--------------------------------------------------------------\n`;
+                       `Date: ${getFormattedDate()}\n` +
+                       `Command "${command}" executed by ${user}.\n` +
+                       printArgs;
 
     fs.appendFileSync(sucLogPath, logMessage, 'utf8');
 }
