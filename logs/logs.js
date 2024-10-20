@@ -13,11 +13,10 @@ function getFormattedDate() {
 
 // Función para guardar un log de error
 function logError(command, user, listArgs, error) {
-    const printArgs =  `Argumentos: [${listArgs}]\n`;
     const logMessage = `--------------------------------------------------------------\n` +
                        `Date: ${getFormattedDate()}\n` +
                        `Command "${command}" executed by ${user}.\n` +
-                       printArgs +
+                       `Argumentos: [${listArgs}]\n` +
                        `${error.stack}\n`;
 
     fs.appendFileSync(errLogPath, logMessage, 'utf8');
@@ -25,11 +24,10 @@ function logError(command, user, listArgs, error) {
 
 // Función para guardar un log de éxito
 function logSuccess(command, user, listArgs) {
-    const printArgs =  `Argumentos: [${listArgs}]\n`;
     const logMessage = `--------------------------------------------------------------\n` +
                        `Date: ${getFormattedDate()}\n` +
                        `Command "${command}" executed by ${user}.\n` +
-                       printArgs;
+                       `Argumentos: [${listArgs}]\n`;
 
     fs.appendFileSync(sucLogPath, logMessage, 'utf8');
 }

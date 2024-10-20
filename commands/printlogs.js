@@ -8,3 +8,11 @@
     !printlogs error 2
     !printlogs success 3
 */
+
+module.exports = {
+    name: 'printlogs',
+    description: 'Imprime los logs de error o de éxito',
+    run: async (message, args, language) => {
+        await message.reply("incompleto");
+    },
+};
