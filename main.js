@@ -18,7 +18,7 @@ for (const file of commandFiles) {
     bot.commands.set(command.name, command);
 }
 
-const prefix = process.env.PREFIX;
+const prefix = process.env.PREFIX || '!';
 
 bot.on(Events.MessageCreate, async (message) => {
     if (message.author.bot || !message.content.startsWith(prefix)) return;
@@ -28,9 +28,7 @@ bot.on(Events.MessageCreate, async (message) => {
     const commandName = args.shift().toLowerCase();
     const command = bot.commands.get(commandName);
 
-    if (!command) {
-        return console.log(`Comando "${commandName}" no encontrado.`);
-    }
+    if (!command) return ;
 
     try {
         await command.run(message, args, 'es');
