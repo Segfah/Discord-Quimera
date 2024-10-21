@@ -5,10 +5,12 @@ const logsDir = path.join(__dirname);
 const errLogPath = path.join(logsDir, 'errLog');
 const sucLogPath = path.join(logsDir, 'sucLog');
 
-// Función para obtener la fecha y hora formateada
+// Función para obtener la fecha y hora formateada en hora local
 function getFormattedDate() {
     const date = new Date();
-    return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+    const offset = date.getTimezoneOffset();
+    const localDate = new Date(date.getTime() - (offset*60*1000));
+    return localDate.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
 
 // Función para guardar un log de error
