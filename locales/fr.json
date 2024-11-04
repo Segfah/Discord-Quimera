@@ -3,6 +3,16 @@
         "ping": {
             "error": "La commande \"!ping\" n'accepte pas d'arguments supplémentaires.",
             "response": "Pong !"
+        },
+        "userinfo": {
+            "error": "Utilisateur introuvable avec le nom ou la mention",
+            "response": {
+                "user": "Utilisateur",
+                "id": "ID",
+                "createdIn": "Créé le",
+                "roles": "Rôles",
+                "joinedAt": "Rejoint le"
+            }
         }
     }
 }

@@ -3,6 +3,16 @@
         "ping": {
             "error": "El comando \"!ping\" no acepta argumentos adicionales.",
             "response": "¡Pong!"
+        },
+        "userinfo": {
+            "error": "No se encontró al usuario con el nombre o mención",
+            "response": {
+                "user": "Usuario",
+                "id": "ID",
+                "createdIn": "Creado en",
+                "roles": "Roles",
+                "joinedAt": "Se unió el"
+            }
         }
     }
 }

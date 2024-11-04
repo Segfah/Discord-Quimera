@@ -3,6 +3,16 @@
         "ping": {
             "error": "The \"!ping\" command does not accept additional arguments.",
             "response": "Pong!"
+        },
+        "userinfo": {
+            "error": "User not found with name or mention",
+            "response": {
+                "user": "User",
+                "id": "ID",
+                "createdIn": "Created in",
+                "roles": "Roles",
+                "joinedAt": "Joined at"
+            }
         }
     }
 }
