@@ -13,6 +13,17 @@
                 "roles": "Rôles",
                 "joinedAt": "A rejoint le serveur le"
             }
+        },
+        "roles": {
+            "noRoles": "Aucun rôle à afficher.",
+            "noMembers": "Aucun membre à afficher."
+        },
+        "setlanguage": {
+            "noPermissions": "Vous n'avez pas la permission de changer la langue du bot.",
+            "invalidLanguage": "La langue sélectionnée n'est pas valide.",
+            "chooseLanguage": "Veuillez choisir une langue.",
+            "success": "La langue du bot a été changée",
+            "timeout": "Le temps pour changer la langue a expiré."
         }
     }
 }
