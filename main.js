@@ -6,8 +6,8 @@ const { logError, logSuccess } = require('./logs/logs');
 
 dotenv.config();
 
-//const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 const bot = new Client({ intents: 53608447 });
+let lenguage = 'es';
 
 bot.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
@@ -31,7 +31,13 @@ bot.on(Events.MessageCreate, async (message) => {
     if (!command) return ;
 
     try {
-        await command.run(message, args, 'es');
+        // Si el comando devuelve un idioma, actualiza la variable global
+        const result = await command.run(message, args, lenguage);
+        console.log(commandName, result);
+        if (commandName === 'setlanguage' && result) {
+            lenguage = result;
+            console.log(`Lenguaje actual: ${lenguage}`);
+        }
         logSuccess(commandName, message.author.tag, args);
     } catch (error) {
         logError(commandName, message.author.tag, args, error);
