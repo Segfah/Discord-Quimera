@@ -5,13 +5,13 @@
             "response": "¡Pong!"
         },
         "userinfo": {
-            "error": "No se encontró al usuario con el nombre o mención",
+            "error": "No se encontró al usuario con el nombre",
             "response": {
                 "user": "Usuario",
                 "id": "ID",
-                "createdIn": "Creado en",
+                "createdIn": "Cuenta creada el",
                 "roles": "Roles",
-                "joinedAt": "Se unió el"
+                "joinedAt": "Se unió al servidor el"
             }
         }
     }

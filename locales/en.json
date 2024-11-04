@@ -1,17 +1,17 @@
 {
     "commands": {
         "ping": {
-            "error": "The \"!ping\" command does not accept additional arguments.",
+            "error": "The command \"!ping\" does not accept additional arguments.",
             "response": "Pong!"
         },
         "userinfo": {
-            "error": "User not found with name or mention",
+            "error": "User with the name not found",
             "response": {
                 "user": "User",
                 "id": "ID",
-                "createdIn": "Created in",
+                "createdIn": "Account created on",
                 "roles": "Roles",
-                "joinedAt": "Joined at"
+                "joinedAt": "Joined the server on"
             }
         }
     }

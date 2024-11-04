@@ -2,16 +2,16 @@
     "commands": {
         "ping": {
             "error": "La commande \"!ping\" n'accepte pas d'arguments supplémentaires.",
-            "response": "Pong !"
+            "response": "Pong!"
         },
         "userinfo": {
-            "error": "Utilisateur introuvable avec le nom ou la mention",
+            "error": "Utilisateur avec le nom introuvable",
             "response": {
                 "user": "Utilisateur",
                 "id": "ID",
-                "createdIn": "Créé le",
+                "createdIn": "Compte créé le",
                 "roles": "Rôles",
-                "joinedAt": "Rejoint le"
+                "joinedAt": "A rejoint le serveur le"
             }
         }
     }
