@@ -23,7 +23,11 @@
             "invalidLanguage": "El idioma seleccionado no es válido.",
             "chooseLanguage": "Por favor, elige un idioma.",
             "success": "El idioma del bot ha sido cambiado",
-            "timeout": "El tiempo de para cambiar el idioma ha expirado."
+            "timeout": "El tiempo de para cambiar el idioma ha expirado.",
+            "alreadySet": "El idioma seleccionado ya está configurado en este servidor."
         }
+    },
+    "db": {
+        "error": "Error al actualizar la base de datos"
     }
 }
