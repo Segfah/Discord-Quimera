@@ -8,13 +8,32 @@ const db = require('./database/db');
 dotenv.config();
 
 const bot = new Client({ intents: 53608447 });
-let lenguage = 'es';
+const languages = {}; // Objeto para almacenar el idioma de cada servidor
 
 bot.commands = new Collection();
 
 // --------------------------------------------- //
-//                   eventos db                  //
-// Cargar eventos dinámicamente
+//                Cargar idiomas                 //
+// --------------------------------------------- //
+bot.once('ready', async () => {
+    console.log('Cargando idiomas de los servidores...');
+    db.all(`SELECT serveur_id, language FROM servers`, (err, rows) => {
+        if (err) {
+            console.error('Error al cargar idiomas desde la base de datos:', err.message);
+        } else {
+            rows.forEach(row => {
+                languages[row.serveur_id] = row.language || 'en'; // Por defecto 'en' si no tiene idioma asignado
+            });
+            console.log('Idiomas cargados correctamente:', languages);
+        }
+    });
+
+    console.log(`${bot.user.username} está en línea.`);
+});
+
+// --------------------------------------------- //
+//            Cargar eventos dinámicos           //
+// --------------------------------------------- //
 const eventServerFiles = fs.readdirSync('./events/server').filter((file) => file.endsWith('.js'));
 const eventMemberFiles = fs.readdirSync('./events/member').filter((file) => file.endsWith('.js'));
 
@@ -29,7 +48,8 @@ for (const file of eventMemberFiles) {
 }
 
 // --------------------------------------------- //
-
+//                  Cargar comandos              //
+// --------------------------------------------- //
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
@@ -44,20 +64,23 @@ bot.on(Events.MessageCreate, async (message) => {
     if (message.author.bot || !message.content.startsWith(prefix)) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-
     const commandName = args.shift().toLowerCase();
     const command = bot.commands.get(commandName);
 
-    if (!command) return ;
+    if (!command) return;
 
     try {
-        // Si el comando devuelve un idioma, actualiza la variable global
-        const result = await command.run(message, args, lenguage);
-        console.log(commandName, result);
+        // Identificar el idioma actual del servidor
+        const currentLanguage = languages[message.guild.id] || 'en';
+
+        // Ejecutar el comando, pasando el idioma y la base de datos
+        const result = await command.run(message, args, currentLanguage, db, languages);
+
+        // Si se ejecuta `setlanguage`, actualizar el idioma en memoria
         if (commandName === 'setlanguage' && result) {
-            lenguage = result;
-            console.log(`Lenguaje actual: ${lenguage}`);
+            languages[message.guild.id] = result; // Actualizar en memoria
         }
+
         logSuccess(commandName, message.author.tag, args);
     } catch (error) {
         logError(commandName, message.author.tag, args, error);
@@ -66,7 +89,9 @@ bot.on(Events.MessageCreate, async (message) => {
 
 bot.login(process.env.DISCORD_TOKEN);
 
-// Cerrar la base de datos al salir
+// --------------------------------------------- //
+//         Cerrar conexión con la base de datos  //
+// --------------------------------------------- //
 process.on('SIGINT', () => {
     console.log('Cerrando conexión con la base de datos...');
     db.close((err) => {

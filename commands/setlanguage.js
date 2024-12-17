@@ -3,18 +3,21 @@ const { t } = require('./../locales/locales');
 module.exports = {
     name: 'setlanguage',
     description: 'Establece el idioma del bot para el servidor interactuando con emojis.',
-    run: async (message, args, language) => {
+    run: async (message, args, currentLanguage, db, languages) => {
         if (!message.member.permissions.has('MANAGE_GUILD')) {
-            return message.reply(t(language, 'commands.setlanguage.noPermissions'));
+            return message.reply(t(currentLanguage, 'commands.setlanguage.noPermissions'));
         }
 
+        const serverId = message.guild.id;
+
+        // Emojis y sus idiomas asociados
         const languageEmojis = {
-            '🇪🇸': 'es', 
-            '🇪🇺': 'en', 
-            '🇫🇷': 'fr'  
+            '🇪🇸': 'es',
+            '🇪🇺': 'en',
+            '🇫🇷': 'fr'
         };
 
-        const languageMessage = await message.reply(t(language, 'commands.setlanguage.chooseLanguage'));
+        const languageMessage = await message.reply(t(currentLanguage, 'commands.setlanguage.chooseLanguage'));
         for (const emoji of Object.keys(languageEmojis)) {
             await languageMessage.react(emoji);
         }
@@ -28,14 +31,28 @@ module.exports = {
                 const reaction = collected.first();
                 const selectedLanguage = languageEmojis[reaction.emoji.name];
 
-                message.reply(t(selectedLanguage, 'commands.setlanguage.success'));
+                // Actualizar idioma en la base de datos
+                if (selectedLanguage == currentLanguage) {
+                    return message.reply(t(currentLanguage, 'commands.setlanguage.alreadySet'));
+                }
+                db.run(`UPDATE servers SET language = ? WHERE serveur_id = ?`, [selectedLanguage, serverId], (err) => {
+                    if (err) {
+                        console.error('Error al actualizar la base de datos', err.message);
+                        return message.reply(t(currentLanguage, 'db.error'));
+                    } else {
+                        // Actualizar idioma en memoria
+                        languages[serverId] = selectedLanguage;
+                        message.reply(t(selectedLanguage, 'commands.setlanguage.success'));
+                    }
+                });
+
                 languageMessage.delete();
                 return selectedLanguage;
             })
             .catch(() => {
-                message.reply(t(language, 'commands.setlanguage.timeout'));
+                message.reply(t(currentLanguage, 'commands.setlanguage.timeout'));
                 languageMessage.delete();
-                return language;
+                return currentLanguage;
             });
     },
 };
