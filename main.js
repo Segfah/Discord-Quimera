@@ -3,6 +3,7 @@ const { Client, Events, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const { logError, logSuccess } = require('./logs/logs');
+const db = require('./database/db');
 
 dotenv.config();
 
@@ -10,6 +11,25 @@ const bot = new Client({ intents: 53608447 });
 let lenguage = 'es';
 
 bot.commands = new Collection();
+
+// --------------------------------------------- //
+//                   eventos db                  //
+// Cargar eventos dinámicamente
+const eventServerFiles = fs.readdirSync('./events/server').filter((file) => file.endsWith('.js'));
+const eventMemberFiles = fs.readdirSync('./events/member').filter((file) => file.endsWith('.js'));
+
+for (const file of eventServerFiles) {
+    const event = require(`./events/server/${file}`);
+    event(bot, db); // Pasar el bot y la base de datos a cada evento del servidor
+}
+
+for (const file of eventMemberFiles) {
+    const event = require(`./events/member/${file}`);
+    event(bot, db); // Pasar el bot y la base de datos a cada evento de los miembros
+}
+
+// --------------------------------------------- //
+
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
@@ -45,3 +65,16 @@ bot.on(Events.MessageCreate, async (message) => {
 });
 
 bot.login(process.env.DISCORD_TOKEN);
+
+// Cerrar la base de datos al salir
+process.on('SIGINT', () => {
+    console.log('Cerrando conexión con la base de datos...');
+    db.close((err) => {
+        if (err) {
+            console.error('Error al cerrar la base de datos:', err.message);
+        } else {
+            console.log('Conexión con SQLite cerrada.');
+        }
+        process.exit(0);
+    });
+});
