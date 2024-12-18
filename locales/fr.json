@@ -25,6 +25,14 @@
             "success": "La langue du bot a été changée",
             "timeout": "Le temps pour changer la langue a expiré.",
             "alreadySet": "La langue sélectionnée est déjà définie pour ce serveur."
+        },
+        "roulette": {
+            "no_participants": "Il n'y a pas assez de participants pour jouer.",
+            "invalid_time": "Veuillez entrer un temps valide.",
+            "winner": "Le gagnant est",
+            "congratulations": "Félicitations!",
+            "participants": "Participants",
+            "participate": "Participez à la roulette en interagissant avec l'emoji"
         }
     },
     "db": {
