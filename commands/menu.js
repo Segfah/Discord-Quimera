@@ -25,10 +25,10 @@ module.exports = {
     description: 'Muestra todos los comandos',
     run: async (message, args, language) => {
         // Construir el mensaje con todos los comandos y descripciones
-        const commandList = commands
-            .map(cmd => `!${cmd.name} - ${cmd.description}`)
+        let commandList = commands
+            .map(cmd => `!${cmd.name} - ${t(language, `commands.${cmd.name}.description`)}`)
             .join('\n');
-
+        commandList += `\n\n${t(language, 'commands.menu.footer')}`;
         await message.reply(commandList);
     },
 };

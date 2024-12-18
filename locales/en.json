@@ -1,10 +1,16 @@
 {
     "commands": {
+        "menu": {
+            "description": "Below is a list of all available commands.",
+            "footer": "For more information about a specific command, use !help <command>."
+        },
         "ping": {
+            "description": "Responds with \"Pong!\" when the command is used.",
             "error": "The command \"!ping\" does not accept additional arguments.",
             "response": "Pong!"
         },
         "userinfo": {
+            "description": "Displays information about a specific user.",
             "error": "User with the name not found",
             "response": {
                 "user": "User",
@@ -15,10 +21,12 @@
             }
         },
         "roles": {
+            "description": "Displays each role in the server and the users that have that role, excluding @everyone and the bot's role.",
             "noRoles": "No roles to show.",
             "noMembers": "No members to show."
         },
         "setlanguage": {
+            "description": "Changes the bot's language in the server.",
             "noPermissions": "You do not have permission to change the bot's language.",
             "invalidLanguage": "The selected language is not valid.",
             "chooseLanguage": "Please choose a language.",
@@ -27,6 +35,7 @@
             "alreadySet": "The selected language is already set for this server."
         },
         "roulette": {
+            "description": "Starts a roulette with the participants that react to the message.",
             "no_participants": "There are not enough participants to play.",
             "invalid_time": "Please enter a valid time.",
             "winner": "The winner is",

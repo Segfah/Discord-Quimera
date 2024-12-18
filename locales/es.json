@@ -1,10 +1,16 @@
 {
     "commands": {
+        "menu": {
+            "description": "A continuación se muestra una lista de todos los comandos disponibles.",
+            "footer": "Para obtener más información sobre un comando específico, usa !help <comando>."
+        },
         "ping": {
+            "description": "Responde con \"Pong!\" cuando se usa el comando.",
             "error": "El comando \"!ping\" no acepta argumentos adicionales.",
             "response": "¡Pong!"
         },
         "userinfo": {
+            "description": "Muestra información sobre un usuario específico.",
             "error": "No se encontró al usuario con el nombre",
             "response": {
                 "user": "Usuario",
@@ -15,10 +21,12 @@
             }
         },
         "roles": {
+            "description": "Muestra cada rol del servidor y los usuarios que tienen ese rol, excluyendo @everyone y el rol del bot.",
             "noRoles": "No hay roles para mostrar.",
             "noMembers": "No hay miembros para mostrar."
         },
         "setlanguage": {
+            "description": "Cambia el idioma del bot en el servidor.",
             "noPermissions": "No tienes permisos para cambiar el idioma del bot.",
             "invalidLanguage": "El idioma seleccionado no es válido.",
             "chooseLanguage": "Por favor, elige un idioma.",
@@ -27,6 +35,7 @@
             "alreadySet": "El idioma seleccionado ya está configurado en este servidor."
         },
         "roulette": {
+            "description": "Inicia una ruleta con los participantes que reaccionen al mensaje.",
             "no_participants": "No hay suficientes participantes para jugar.",
             "invalid_time": "Por favor, introduce un tiempo válido.",
             "winner": "El ganador es",
