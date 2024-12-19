@@ -1,8 +1,18 @@
 {
     "commands": {
-        "menu": {
-            "description": "Below is a list of all available commands.",
-            "footer": "For more information about a specific command, use !help <command>."
+        "help": {
+            "description": "Displays all commands and their usage if there is an argument.",
+            "error": "Command not found",
+            "ArgsError": "Error: more than one argument is not allowed",
+            "footer": "For more information about a specific command, use !help <command>.",
+            "response": {
+                "ping":  "!ping",
+                "userinfo": "!userinfo or !userinfo <user>",
+                "roles": "!roles",
+                "setlanguage": "!setlanguage <language>",
+                "roulette": "!roulette <time>",
+                "help": "!help or !help <command>"
+            }
         },
         "ping": {
             "description": "Responds with \"Pong!\" when the command is used.",

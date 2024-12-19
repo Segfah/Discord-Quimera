@@ -1,8 +1,18 @@
 {
     "commands": {
-        "menu": {
-            "description": "A continuación se muestra una lista de todos los comandos disponibles.",
-            "footer": "Para obtener más información sobre un comando específico, usa !help <comando>."
+        "help": {
+            "description": "Muestra todos los comandos y tambien su forma de uso si hay un argumento",
+            "error": "No se encontró el comando",
+            "ArgsError": "Error: no se permite mas de un argumento",
+            "footer": "Para obtener más información sobre un comando específico, usa !help <comando>.",
+            "response": {
+                "ping":  "!ping",
+                "userinfo": "!userinfo o !userinfo <usuario>",
+                "roles": "!roles",
+                "setlanguage": "!setlanguage <idioma>",
+                "roulette": "!roulette <tiempo>",
+                "help": "!help o !help <comando>"
+            }
         },
         "ping": {
             "description": "Responde con \"Pong!\" cuando se usa el comando.",

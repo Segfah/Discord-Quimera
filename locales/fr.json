@@ -1,8 +1,18 @@
 {
     "commands": {
-        "menu": {
-            "description": "Voici une liste de toutes les commandes disponibles.",
-            "footer": "Pour plus d'informations sur une commande spécifique, utilisez !help <commande>."
+        "help": {
+            "description": "Affiche toutes les commandes et leur utilisation si un argument est donné.",
+            "error": "Commande introuvable",
+            "ArgsError": "Erreur: plus d'un argument n'est pas autorisé",
+            "footer": "Pour plus d'informations sur une commande spécifique, utilisez !help <commande>.",
+            "response": {
+                "ping":  "!ping",
+                "userinfo": "!userinfo ou !userinfo <utilisateur>",
+                "roles": "!roles",
+                "setlanguage": "!setlanguage <langue>",
+                "roulette": "!roulette <temps>",
+                "help": "!help ou !help <commande>"
+            }
         },
         "ping": {
             "description": "Répond avec \"Pong!\" lorsqu'il est utilisé.",
