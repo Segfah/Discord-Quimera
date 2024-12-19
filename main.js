@@ -24,7 +24,6 @@ bot.once('ready', async () => {
             rows.forEach(row => {
                 languages[row.serveur_id] = row.language || 'en'; // Por defecto 'en' si no tiene idioma asignado
             });
-            console.log('Idiomas cargados correctamente:', languages);
         }
     });
 
